@@ -1,89 +1,89 @@
 const DATA = {
     featured: [
-      { title: "Forza Horizon 5 Mobile", rating: 7.8, img: "https://picsum.photos/seed/rr/700/700" },
-      { title: "Assetto Corsa Mobile", rating: 7.9, img: "https://picsum.photos/seed/roof/700/700" },
-      { title: "Euro Truck Simulator 2", rating: 8.9, img: "https://picsum.photos/seed/beam/700/700" }
+      { title: "Forza Horizon 5 Mobile", rating: 7.8, img: "https://i.postimg.cc/XNkJ53Z0/d5e0490d7a06ac352730a2a444d432df.jpg" },
+      { title: "Assetto Corsa Mobile", rating: 7.9, img: "https://i.postimg.cc/Y0dMsrgq/images-(6).jpg" },
+      { title: "Euro Truck Simulator 2", rating: 8.9, img: "https://i.postimg.cc/2SsmJXqQ/images-(5).jpg" }
     ],
     apps: [
       {
         title: "Forza Horizon 5 Mobile",
         dev: "Spike trolor",
         desc: "Open-world racing experience set in stunning environments with high-speed cars, dynamic weather, and realistic driving physics optimized for mobile.",
-        size: "2 GB",
+        size: "1.84 GB",
         rating: 6.5,
-        img: "https://picsum.photos/seed/silk/800/800"
+        img: "https://i.postimg.cc/XNkJ53Z0/d5e0490d7a06ac352730a2a444d432df.jpg"
       },
       {
         title: "Assetto Corsa Mobile",
         dev: "Chunsoft",
         desc: "Realistic racing simulator focused on authentic car handling, precision driving, and immersive track-based motorsport gameplay.",
-        size: "1.2 GB",
+        size: "1.12 GB",
         rating: 5.5,
-        img: "https://picsum.photos/seed/rocket/800/800"
+        img: "https://i.postimg.cc/Y0dMsrgq/images-(6).jpg"
       },
       {
         title: "Euro Truck Simulator 2",
         dev: "Santa Monica Studio",
         desc: "Drive powerful trucks across Europe, deliver cargo between cities, and enjoy a detailed trucking simulation with long-distance routes.",
-        size: "850 MB",
+        size: "1.37 GB",
         rating: 6.8,
-        img: "https://picsum.photos/seed/gow/800/800"
+        img: "https://i.postimg.cc/2SsmJXqQ/images-(5).jpg"
       },
       {
         title: "Minecraft",
         dev: "Ubisoft",
         desc: "Explore, build, and survive in an infinite block-based world where creativity and adventure come together with endless possibilities.",
-        size: "960 MB",
+        size: "462 MB",
         rating: 7.0,
-        img: "https://picsum.photos/seed/wd2/800/800"
+        img: "https://i.postimg.cc/5NGMYkm0/pixel-minecraft-style-land-background-vector.jpg"
       },
       {
         title: "GTA 5 Mobile",
         dev: "Game Developer",
         desc: "Open-world crime action game featuring missions, free roaming, intense gameplay, and a vast city to explore on mobile.",
-        size: "1.1 GB",
+        size: "1.76 GB",
         rating: 7.5,
-        img: "https://picsum.photos/seed/ets/800/800"
+        img: "https://i.postimg.cc/fLHP4J2k/Grand-Theft-Auto-V.png"
       },
       {
         title: "Naruto Ultimate Ninja Storm 4",
         dev: "Rockstar Games",
         desc: "Fast-paced anime fighting game featuring cinematic battles, iconic characters, and powerful ninja techniques from the Naruto universe.",
-        size: "1.4 GB",
+        size: "934 MB",
         rating: 9.1,
-        img: "https://picsum.photos/seed/rdr/800/800"
+        img: "https://i.postimg.cc/y62HWbj4/images.jpg"
       },
       {
         title: "BeamNG.drive Mobile",
         dev: "CD Projekt Red",
         desc: "Advanced vehicle physics simulation with realistic crashes, soft-body damage, and open environments for driving experimentation.",
-        size: "2.5 GB",
+        size: "1.28 GB",
         rating: 8.2,
-        img: "https://picsum.photos/seed/cp2077/800/800"
+        img: "https://i.postimg.cc/yxZ2F7jN/4508fc3bbbcf6b9c440498af6900703b.jpg"
       },
       {
         title: "Fifa Street Mod",
         dev: "FromSoftware",
         desc: "Street-style football gameplay focused on freestyle skills, tricks, and fast-paced matches in urban environments.",
-        size: "3.1 GB",
+        size: "688 MB",
         rating: 9.6,
-        img: "https://picsum.photos/seed/elden/800/800"
+        img: "https://i.postimg.cc/1z7d28YR/images-(7).jpg"
       },
       {
         title: "Jump Force",
         dev: "Sucker Punch",
         desc: "Crossover fighting game bringing together legendary anime characters in intense battles with cinematic special attacks.",
-        size: "1.8 GB",
+        size: "1.05 GB",
         rating: 9.4,
-        img: "https://picsum.photos/seed/ghost/800/800"
+        img: "https://i.postimg.cc/13J7VgSF/4b392164f89981c794c943b22936cff3.jpg"
       },
       {
         title: "Rematch mobile",
         dev: "Insomniac Games",
         desc: "Competitive action-focused football experience designed for quick matches, fast reactions, and skill-based gameplay.",
-        size: "2.1 GB",
+        size: "512 MB",
         rating: 9.2,
-        img: "https://picsum.photos/seed/spidey/800/800"
+        img: "https://i.postimg.cc/Jz6K493p/bf53eec311119801d096ef4c5e05ef0feb20c365e568e344.jpg"
       }
     ],
     toastNames: ["Mike", "Sarah", "David", "Adam", "Lina", "Chris", "Emma", "John"],
