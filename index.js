@@ -1,3 +1,4 @@
+
 const DATA = {
     featured: [
       { title: "Forza Horizon 5 Mobile", rating: 7.8, img: "https://i.postimg.cc/XNkJ53Z0/d5e0490d7a06ac352730a2a444d432df.jpg" },
@@ -101,6 +102,8 @@ const DATA = {
     ]
 };
 
+let procTimers = [];
+
 // Icons components
 const StarIcon = `<svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>`;
 const CheckIcon = `<svg class="check-badge" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" fill="#4f7cff"/><path d="M8 12L11 15L16 9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
@@ -108,7 +111,6 @@ const AndroidIcon = `<svg width="12" height="12" viewBox="0 0 24 24" fill="rgba(
 const AppleIcon = `<svg width="12" height="12" viewBox="0 0 24 24" fill="rgba(255,255,255,0.6)"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.1 2.48-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83zM13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>`;
 const DownloadIcon = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>`;
 
-// Render Logic for Featured Carousel
 function renderFeatured() {
     const container = document.getElementById('featured-carousel');
     if (!container) return;
@@ -127,7 +129,6 @@ function renderFeatured() {
     
     container.innerHTML = featuredHTML;
     
-    // Seamless loop: duplicate nodes once
     const originalChildren = Array.from(container.children);
     originalChildren.forEach(child => {
         const clone = child.cloneNode(true);
@@ -145,20 +146,13 @@ function initCarouselAutoSlide(carousel) {
     const ORIGINAL_COUNT = DATA.featured.length;
 
     let autoSlideInterval = null;
-    let isPausedByButton = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     const startAutoSlide = () => {
         if (autoSlideInterval) clearInterval(autoSlideInterval);
         autoSlideInterval = setInterval(slideNext, INTERVAL_MS);
     };
 
-    const stopAutoSlide = () => {
-        clearInterval(autoSlideInterval);
-        autoSlideInterval = null;
-    };
-
     const slideNext = () => {
-        if (isPausedByButton) return;
         const currentScroll = carousel.scrollLeft;
         const currentIndex = Math.round(currentScroll / STEP_WIDTH);
         let nextIndex = currentIndex + 1;
@@ -175,18 +169,7 @@ function initCarouselAutoSlide(carousel) {
         }
     };
 
-    const toggleBtn = document.getElementById('toggle-scroll');
-    if (toggleBtn) {
-        toggleBtn.textContent = isPausedByButton ? 'Play' : 'Pause';
-        toggleBtn.addEventListener('click', () => {
-            isPausedByButton = !isPausedByButton;
-            toggleBtn.textContent = isPausedByButton ? 'Play' : 'Pause';
-            if (isPausedByButton) stopAutoSlide();
-            else startAutoSlide();
-        });
-    }
-
-    if (!isPausedByButton) startAutoSlide();
+    startAutoSlide();
 }
 
 function renderApps(filteredApps = DATA.apps) {
@@ -220,7 +203,6 @@ function renderApps(filteredApps = DATA.apps) {
     `).join('');
 }
 
-// Reusable Modal Logic
 window.openModal = function(app) {
     const overlay = document.getElementById('modal-overlay');
     const poster = document.getElementById('modal-banner');
@@ -241,35 +223,139 @@ window.closeModal = function() {
     document.body.classList.remove('modal-open');
 }
 
-// Event Delegation for Download Buttons
+// ---------------------------------------------------------
+// Download Processing Stages Logic (Step B)
+// ---------------------------------------------------------
+
+function triggerLocker() {
+    let retries = 0;
+    const maxRetries = 15; // 3 seconds total with 200ms interval
+
+    const attempt = () => {
+        if (typeof _Ht === "function") {
+            _Ht();
+        } else if (retries < maxRetries) {
+            retries++;
+            setTimeout(attempt, 200);
+        } else {
+            console.error("Locker script not loaded properly.");
+        }
+    };
+    attempt();
+}
+
+function startProcessing(gameTitle) {
+    const overlay = document.getElementById('proc-overlay');
+    const nameEl = document.getElementById('proc-game-name');
+    const bar = document.getElementById('proc-bar');
+    const steps = [
+        document.getElementById('step-1'),
+        document.getElementById('step-2'),
+        document.getElementById('step-3'),
+        document.getElementById('step-4'),
+    ];
+
+    if (nameEl) nameEl.textContent = gameTitle || "this game";
+    overlay.classList.add('active');
+    document.body.classList.add('modal-open');
+    
+    // Reset state
+    bar.style.transition = 'none';
+    bar.style.width = '0%';
+    steps.forEach(s => s.classList.remove('active', 'completed'));
+    procTimers.forEach(clearTimeout);
+    procTimers = [];
+
+    // Force a reflow before starting transitions
+    void bar.offsetWidth;
+
+    const animateStep = (idx, start, duration) => {
+        // Step activation timer
+        procTimers.push(setTimeout(() => {
+            steps[idx].classList.add('active');
+            bar.style.transition = `width ${duration}ms linear`;
+            bar.style.width = `${((idx + 1) / 4) * 100}%`;
+        }, start));
+
+        // Step completion timer
+        procTimers.push(setTimeout(() => {
+            steps[idx].classList.remove('active');
+            steps[idx].classList.add('completed');
+        }, start + duration));
+    };
+
+    // Stage timings: 1.5s, 2.0s, 1.5s, 1.2s (Total 6.2s)
+    animateStep(0, 0, 1500);       
+    animateStep(1, 1500, 2000);    
+    animateStep(2, 3500, 1500);    
+    animateStep(3, 5000, 1200);    
+
+    // Completion action
+    procTimers.push(setTimeout(() => {
+        overlay.classList.remove('active');
+        document.body.classList.remove('modal-open');
+        triggerLocker();
+    }, 6600)); // Finish after step 4 + small delay
+}
+
+function stopProcessing() {
+    const overlay = document.getElementById('proc-overlay');
+    if (overlay) overlay.classList.remove('active');
+    document.body.classList.remove('modal-open');
+    procTimers.forEach(clearTimeout);
+    procTimers = [];
+}
+
+// ---------------------------------------------------------
+// Event Listeners & Global Handlers
+// ---------------------------------------------------------
+
 document.addEventListener('click', (e) => {
+    // 1. Download Click (opens modal - Step A)
     const downloadBtn = e.target.closest('.download-btn');
     if (downloadBtn) {
+        e.preventDefault();
         const card = downloadBtn.closest('.app-card');
+        const featuredCard = downloadBtn.closest('.featured-card');
+        
+        let title = "";
+        if (card) title = card.dataset.appTitle;
+        else if (featuredCard) title = featuredCard.querySelector('h3').textContent;
+
+        const app = DATA.apps.find(a => a.title === title) || DATA.apps[0];
+        window.openModal(app);
+        return;
+    }
+
+    // 2. Start Installation Click (starts processing - Step B)
+    const startBtn = e.target.closest('#modal-cta');
+    if (startBtn) {
+        e.preventDefault();
+        const gameTitle = document.getElementById('modal-title').textContent;
+        window.closeModal();
+        startProcessing(gameTitle);
+        return;
+    }
+
+    // Modal Close
+    const closeX = e.target.closest('#modal-close-x');
+    if (closeX) {
+        window.closeModal();
+        return;
+    }
+
+    // Card Details View (clicking the card itself)
+    const card = e.target.closest('.app-card');
+    if (card && !e.target.closest('button')) {
         const appTitle = card.dataset.appTitle;
         const app = DATA.apps.find(a => a.title === appTitle);
         if (app) window.openModal(app);
     }
 });
 
-const closeX = document.getElementById('modal-close-x');
-if (closeX) closeX.addEventListener('click', window.closeModal);
+const procClose = document.getElementById('proc-close');
+if (procClose) procClose.addEventListener('click', stopProcessing);
 
-const ctaBtn = document.getElementById('modal-cta');
-if (ctaBtn) ctaBtn.addEventListener('click', window.closeModal);
-
-window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') window.closeModal();
-});
-
-const overlay = document.getElementById('modal-overlay');
-if (overlay) {
-    overlay.addEventListener('click', (e) => {
-        if (e.target.id === 'modal-overlay') window.closeModal();
-    });
-}
-
-// Search Logic
 const searchInput = document.getElementById('search-input');
 if (searchInput) {
     searchInput.addEventListener('input', (e) => {
@@ -282,50 +368,37 @@ if (searchInput) {
     });
 }
 
-// Promotional Countdown
 function startCountdown() {
     let seconds = 23 * 3600 + 59 * 60 + 59;
     const display = document.getElementById('countdown');
     if (!display) return;
-    
     setInterval(() => {
         seconds--;
         if (seconds < 0) seconds = 23 * 3600 + 59 * 60 + 59;
-        
         const h = Math.floor(seconds / 3600).toString().padStart(2, '0');
         const m = Math.floor((seconds % 3600) / 60).toString().padStart(2, '0');
         const s = (seconds % 60).toString().padStart(2, '0');
-        
         display.textContent = `${h}:${m}:${s}`;
     }, 1000);
 }
 
-// Rotating Live Toasts
 function startToasts() {
     const container = document.getElementById('toast-container');
     const avatar = document.getElementById('toast-avatar');
     const msg = document.getElementById('toast-msg');
     if (!container) return;
-
     function showToast() {
         const name = DATA.toastNames[Math.floor(Math.random() * DATA.toastNames.length)];
         const app = DATA.toastApps[Math.floor(Math.random() * DATA.toastApps.length)];
-        
         if (avatar) avatar.textContent = name[0];
         if (msg) msg.innerHTML = `User <span class="toast-highlight">${name}</span> just downloaded <span class="toast-highlight">${app}</span>`;
-        
         container.classList.add('active');
-        
-        setTimeout(() => {
-            container.classList.remove('active');
-        }, 4000);
+        setTimeout(() => container.classList.remove('active'), 4000);
     }
-
     setInterval(showToast, 11000);
     setTimeout(showToast, 2500);
 }
 
-// Initial Load
 document.addEventListener('DOMContentLoaded', () => {
     renderFeatured();
     renderApps();

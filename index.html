@@ -44,7 +44,6 @@
             position: relative;
         }
 
-        /* Premium Grain Overlay */
         body::before {
             content: "";
             position: fixed;
@@ -56,7 +55,6 @@
             mix-blend-mode: overlay;
         }
 
-        /* Vignette Effect */
         body::after {
             content: "";
             position: fixed;
@@ -66,9 +64,7 @@
             background: radial-gradient(circle, transparent 40%, rgba(0, 0, 0, 0.3) 100%);
         }
 
-        body.modal-open {
-            overflow: hidden;
-        }
+        body.modal-open { overflow: hidden; }
 
         .container {
             max-width: 980px;
@@ -79,7 +75,6 @@
             width: 100%;
         }
 
-        /* Header */
         header {
             position: sticky;
             top: 0;
@@ -91,11 +86,7 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .header-content {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
+        .header-content { display: flex; align-items: center; gap: 14px; }
 
         .logo-badge {
             width: 44px;
@@ -110,37 +101,13 @@
             flex-shrink: 0;
         }
 
-        .logo-badge img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+        .logo-badge img { width: 100%; height: 100%; object-fit: cover; }
 
-        .header-text h1 {
-            font-size: 16px;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-            color: var(--title);
-            line-height: 1.2;
-        }
+        .header-text h1 { font-size: 16px; font-weight: 800; letter-spacing: 0.5px; color: var(--title); line-height: 1.2; }
+        .header-text p { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
 
-        .header-text p {
-            font-size: 10px;
-            color: var(--muted);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        /* Search Bar */
-        .search-section {
-            padding: 20px 0 16px;
-        }
-
-        .search-wrapper {
-            position: relative;
-            width: 100%;
-        }
-
+        .search-section { padding: 20px 0 16px; }
+        .search-wrapper { position: relative; width: 100%; }
         .search-input {
             width: 100%;
             padding: 12px 16px 12px 42px;
@@ -152,73 +119,16 @@
             outline: none;
             transition: all 0.3s ease;
         }
+        .search-input:focus { background: rgba(255, 255, 255, 0.08); border-color: var(--primary); }
+        .search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); opacity: 0.5; }
 
-        .search-input:focus {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: var(--primary);
-        }
+        .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+        .section-title { display: flex; align-items: center; gap: 8px; font-size: 16px; font-weight: 700; }
+        .section-title::before { content: ''; width: 3px; height: 16px; background: var(--primary); border-radius: 2px; }
+        .view-all-group { display: flex; align-items: center; gap: 8px; }
+        .toggle-auto-scroll { display: none; }
+        .view-all { font-size: 12px; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 4px; }
 
-        .search-icon {
-            position: absolute;
-            left: 14px;
-            top: 50%;
-            transform: translateY(-50%);
-            opacity: 0.5;
-        }
-
-        /* Section Titles */
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-        }
-
-        .section-title {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 16px;
-            font-weight: 700;
-        }
-
-        .section-title::before {
-            content: '';
-            width: 3px;
-            height: 16px;
-            background: var(--primary);
-            border-radius: 2px;
-        }
-
-        .view-all-group {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .toggle-auto-scroll {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--muted);
-            font-size: 9px;
-            padding: 4px 6px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 600;
-            text-transform: uppercase;
-            transition: all 0.2s;
-        }
-
-        .view-all {
-            font-size: 12px;
-            color: var(--muted);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        /* Carousel Area */
         .featured-carousel {
             display: flex;
             overflow-x: auto;
@@ -229,11 +139,7 @@
             -ms-overflow-style: none;
             -webkit-overflow-scrolling: touch; 
         }
-
-        .featured-carousel::-webkit-scrollbar {
-            display: none;
-        }
-
+        .featured-carousel::-webkit-scrollbar { display: none; }
         .featured-card {
             flex: 0 0 160px;
             scroll-snap-align: start;
@@ -243,33 +149,10 @@
             padding: 8px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
         }
+        .featured-img { width: 100%; aspect-ratio: 1; border-radius: var(--radius-img); object-fit: cover; margin-bottom: 8px; }
+        .featured-info h3 { font-size: 12px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 2px; }
+        .featured-rating { display: flex; align-items: center; gap: 4px; font-size: 10px; color: var(--muted); }
 
-        .featured-img {
-            width: 100%;
-            aspect-ratio: 1;
-            border-radius: var(--radius-img);
-            object-fit: cover;
-            margin-bottom: 8px;
-        }
-
-        .featured-info h3 {
-            font-size: 12px;
-            font-weight: 600;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            margin-bottom: 2px;
-        }
-
-        .featured-rating {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            font-size: 10px;
-            color: var(--muted);
-        }
-
-        /* Promo Block */
         .promo-block {
             background: linear-gradient(135deg, rgba(79, 124, 255, 0.15) 0%, rgba(126, 79, 255, 0.1) 100%);
             border: 1px solid rgba(79, 124, 255, 0.2);
@@ -279,51 +162,13 @@
             text-align: center;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
+        .promo-block h2 { font-size: 16px; font-weight: 800; margin-bottom: 4px; }
+        .promo-block p { font-size: 11px; color: var(--muted); margin-bottom: 12px; }
+        .countdown-bar { background: var(--primary); color: #fff; padding: 6px 12px; border-radius: 8px; display: inline-block; font-weight: 700; font-size: 14px; font-variant-numeric: tabular-nums; box-shadow: 0 4px 12px rgba(79, 124, 255, 0.3); }
 
-        .promo-block h2 {
-            font-size: 16px;
-            font-weight: 800;
-            margin-bottom: 4px;
-        }
-
-        .promo-block p {
-            font-size: 11px;
-            color: var(--muted);
-            margin-bottom: 12px;
-        }
-
-        .countdown-bar {
-            background: var(--primary);
-            color: #fff;
-            padding: 6px 12px;
-            border-radius: 8px;
-            display: inline-block;
-            font-weight: 700;
-            font-size: 14px;
-            font-variant-numeric: tabular-nums;
-            box-shadow: 0 4px 12px rgba(79, 124, 255, 0.3);
-        }
-
-        /* Main Grid - Mobile First Responsive Logic */
-        .apps-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 12px;
-            padding-bottom: 80px;
-        }
-
-        @media (max-width: 360px) {
-            .apps-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (min-width: 768px) {
-            .apps-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 20px;
-            }
-        }
+        .apps-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; padding-bottom: 80px; }
+        @media (max-width: 360px) { .apps-grid { grid-template-columns: 1fr; } }
+        @media (min-width: 768px) { .apps-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; } }
 
         .app-card {
             background: var(--card-bg);
@@ -336,303 +181,64 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
             width: 100%;
         }
-
-        /* Optimized Responsive Image Wrapper */
-        .app-img-wrapper {
-            position: relative;
-            margin-bottom: 10px;
-            display: flex;
-            justify-content: center;
-            width: 100%;
-            aspect-ratio: 1 / 1;
-            margin-left: auto;
-            margin-right: auto;
-            overflow: hidden;
-            border-radius: var(--radius-img);
-        }
-
-        .app-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-        }
-
-        .app-title-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 2px;
-        }
-
-        .app-title {
-            font-size: 13px;
-            font-weight: 700;
-            line-height: 1.3;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            color: var(--title);
-        }
-
-        .check-badge {
-            flex-shrink: 0;
-            margin-left: 4px;
-        }
-
-        .app-dev {
-            font-size: 10px;
-            color: var(--muted);
-            margin-bottom: 6px;
-        }
-
-        .app-desc {
-            font-size: 10px;
-            color: rgba(255, 255, 255, 0.45);
-            margin-bottom: 10px;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            line-height: 1.4;
-        }
-
-        .app-meta {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: auto;
-            margin-bottom: 10px;
-            flex-wrap: wrap;
-        }
-
-        .platforms {
-            display: flex;
-            gap: 4px;
-        }
-
-        .platform-icon {
-            width: 18px;
-            height: 18px;
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .app-size {
-            font-size: 9px;
-            color: var(--muted);
-            font-weight: 600;
-        }
-
-        .app-rating {
-            margin-left: auto;
-            display: flex;
-            align-items: center;
-            gap: 2px;
-            font-size: 9px;
-            color: #ffc107;
-            font-weight: 700;
-        }
-
-        .download-btn {
-            width: 100%;
-            padding: 10px;
-            background: linear-gradient(to bottom, var(--primary), #3f6fff);
-            border: none;
-            border-radius: 12px;
-            color: #fff;
-            font-size: 12px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(79, 124, 255, 0.2);
-            transition: all 0.2s ease;
-        }
+        .app-img-wrapper { position: relative; margin-bottom: 10px; display: flex; justify-content: center; width: 100%; aspect-ratio: 1 / 1; overflow: hidden; border-radius: var(--radius-img); }
+        .app-img { width: 100%; height: 100%; object-fit: cover; }
+        .app-title-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2px; }
+        .app-title { font-size: 13px; font-weight: 700; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; color: var(--title); }
+        .app-dev { font-size: 10px; color: var(--muted); margin-bottom: 6px; }
+        .app-desc { font-size: 10px; color: rgba(255, 255, 255, 0.45); margin-bottom: 10px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.4; }
+        .app-meta { display: flex; align-items: center; gap: 8px; margin-top: auto; margin-bottom: 10px; flex-wrap: wrap; }
+        .platform-icon { width: 18px; height: 18px; background: rgba(255, 255, 255, 0.08); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .app-size { font-size: 9px; color: var(--muted); font-weight: 600; }
+        .app-rating { margin-left: auto; display: flex; align-items: center; gap: 2px; font-size: 9px; color: #ffc107; font-weight: 700; }
+        .download-btn { width: 100%; padding: 10px; background: linear-gradient(to bottom, var(--primary), #3f6fff); border: none; border-radius: 12px; color: #fff; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; }
 
         /* Modal Styles */
-        #modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.75);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            z-index: 2000;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 16px;
-        }
+        #modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.75); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 2000; display: none; align-items: center; justify-content: center; padding: 16px; }
+        #modal-overlay.active { display: flex; }
+        .modal { background: #0b1222; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px; width: 100%; max-width: 420px; position: relative; box-shadow: 0 24px 70px rgba(0,0,0,0.6); overflow: hidden; padding: 14px; animation: modalScaleIn 0.3s cubic-bezier(0.17, 0.67, 0.83, 0.67); }
+        @keyframes modalScaleIn { from { opacity: 0; transform: scale(0.9) translateY(10px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+        .modal-banner-container { position: relative; width: 100%; height: 130px; background: linear-gradient(135deg, #ff4f4f 0%, #4f7cff 100%); border-radius: 14px; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 16px; }
+        .modal-img-frame { width: 88px; height: 88px; border-radius: 18px; overflow: hidden; background: rgba(255, 255, 255, 0.06); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4); display: flex; align-items: center; justify-content: center; }
+        .modal-poster { width: 100%; height: 100%; object-fit: contain; }
+        .modal-close-x { position: absolute; top: 8px; right: 8px; width: 28px; height: 28px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); border: none; color: #fff; font-size: 14px; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+        .modal-title { font-size: 20px; font-weight: 800; margin-bottom: 4px; color: #fff; }
+        .modal-downloads { display: flex; align-items: center; font-size: 12px; color: rgba(255, 255, 255, 0.6); margin-bottom: 12px; gap: 6px; }
+        .modal-testimonial { background: #111a32; border-left: 3px solid #4f7cff; border-radius: 10px; padding: 10px; margin-bottom: 14px; }
+        .modal-testimonial p { font-size: 11px; font-style: italic; color: rgba(255, 255, 255, 0.85); line-height: 1.4; }
+        .modal-description { font-size: 12px; color: rgba(255, 255, 255, 0.6); line-height: 1.5; margin-bottom: 18px; }
+        .modal-cta { width: 100%; height: 48px; background: linear-gradient(90deg, #3f6fff, #5c7cff); border: none; border-radius: 12px; color: #fff; font-size: 15px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
 
-        #modal-overlay.active {
-            display: flex;
-        }
+        /* Processing Modal Styles */
+        #proc-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.82); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); z-index: 5000; display: none; align-items: center; justify-content: center; padding: 16px; }
+        #proc-overlay.active { display: flex; }
+        .proc-modal { background: #0d1428; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 28px; width: 100%; max-width: 520px; padding: 32px; position: relative; box-shadow: 0 30px 100px rgba(0, 0, 0, 0.8); text-align: center; }
+        .proc-close { position: absolute; top: 16px; right: 16px; background: rgba(255, 255, 255, 0.05); border: none; color: #fff; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .proc-title { font-size: 24px; font-weight: 800; margin-bottom: 8px; }
+        .proc-subtitle { font-size: 14px; color: var(--muted); margin-bottom: 24px; }
+        .proc-progress-bg { width: 100%; height: 10px; background: rgba(255, 255, 255, 0.06); border-radius: 10px; overflow: hidden; margin-bottom: 32px; position: relative; }
+        .proc-progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #4f7cff, #7e4fff); box-shadow: 0 0 15px rgba(79, 124, 255, 0.6); transition: width 0.3s linear; }
+        .proc-steps { list-style: none; text-align: left; display: flex; flex-direction: column; gap: 18px; }
+        .proc-step { display: flex; align-items: center; gap: 14px; opacity: 0.3; transition: all 0.4s ease; }
+        .proc-step.active { opacity: 1; transform: translateX(8px); }
+        .proc-step.completed { opacity: 0.6; }
+        .proc-indicator { width: 30px; height: 30px; border-radius: 50%; background: rgba(255, 255, 255, 0.06); display: flex; align-items: center; justify-content: center; flex-shrink: 0; border: 1px solid rgba(255, 255, 255, 0.05); }
+        .proc-indicator svg { width: 16px; height: 16px; display: none; color: #fff; }
+        .proc-step.completed .proc-indicator { background: #22c55e; border-color: #22c55e; }
+        .proc-step.completed .proc-indicator svg { display: block; }
+        .proc-spinner { width: 18px; height: 18px; border: 2.5px solid rgba(79, 124, 255, 0.2); border-top-color: #4f7cff; border-radius: 50%; display: none; animation: spin 0.8s linear infinite; }
+        .proc-step.active .proc-spinner { display: block; }
+        .proc-step-text { font-size: 15px; font-weight: 600; color: rgba(255, 255, 255, 0.4); }
+        .proc-step.active .proc-step-text { color: #fff; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
 
-        .modal {
-            background: #0b1222;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
-            width: 100%;
-            max-width: 420px;
-            position: relative;
-            box-shadow: 0 24px 70px rgba(0,0,0,0.6);
-            overflow: hidden;
-            animation: modalScaleIn 0.3s cubic-bezier(0.17, 0.67, 0.83, 0.67);
-            padding: 14px;
-        }
-
-        @keyframes modalScaleIn {
-            from { opacity: 0; transform: scale(0.9) translateY(10px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
-        }
-
-        .modal-banner-container {
-            position: relative;
-            width: 100%;
-            height: 110px;
-            background: linear-gradient(135deg, #ff4f4f 0%, #4f7cff 100%);
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            margin-bottom: 16px;
-        }
-
-        .modal-poster {
-            width: 70px;
-            height: 105px;
-            border-radius: 8px;
-            object-fit: cover;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-            z-index: 2;
-        }
-
-        .modal-close-x {
-            position: absolute;
-            top: 8px;
-            right: 8px;
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            color: #fff;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 10;
-        }
-
-        .modal-title {
-            font-size: 20px;
-            font-weight: 800;
-            margin-bottom: 4px;
-            color: #fff;
-        }
-
-        .modal-downloads {
-            display: flex;
-            align-items: center;
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.6);
-            margin-bottom: 12px;
-            gap: 6px;
-        }
-
-        .modal-testimonial {
-            background: #111a32;
-            border-left: 3px solid #4f7cff;
-            border-radius: 10px;
-            padding: 10px;
-            margin-bottom: 14px;
-        }
-
-        .modal-testimonial p {
-            font-size: 11px;
-            font-style: italic;
-            color: rgba(255, 255, 255, 0.85);
-            line-height: 1.4;
-        }
-
-        .modal-description {
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.6);
-            line-height: 1.5;
-            margin-bottom: 18px;
-        }
-
-        .modal-cta {
-            width: 100%;
-            height: 48px;
-            background: linear-gradient(90deg, #3f6fff, #5c7cff);
-            border: none;
-            border-radius: 12px;
-            color: #fff;
-            font-size: 15px;
-            font-weight: 700;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        /* Toast Responsive */
-        #toast-container {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%) translateY(150%);
-            width: calc(100% - 32px);
-            max-width: 380px;
-            z-index: 1000;
-            transition: transform 0.5s ease;
-        }
-
-        #toast-container.active {
-            transform: translateX(-50%) translateY(0);
-        }
-
-        .toast {
-            background: rgba(20, 21, 25, 0.95);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 10px 12px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .toast-avatar {
-            width: 32px;
-            height: 32px;
-            background: var(--primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 12px;
-            flex-shrink: 0;
-        }
-
-        .toast-content {
-            font-size: 11px;
-            line-height: 1.3;
-        }
+        /* Toast Styles */
+        #toast-container { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%) translateY(150%); width: calc(100% - 32px); max-width: 380px; z-index: 1000; transition: transform 0.5s ease; }
+        #toast-container.active { transform: translateX(-50%) translateY(0); }
+        .toast { background: rgba(20, 21, 25, 0.95); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); padding: 10px 12px; border-radius: 12px; display: flex; align-items: center; gap: 10px; }
+        .toast-avatar { width: 32px; height: 32px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 12px; flex-shrink: 0; }
+        .toast-content { font-size: 11px; line-height: 1.3; }
+        .toast-highlight { color: var(--primary); font-weight: 700; }
     </style>
 </head>
 <body>
@@ -662,13 +268,10 @@
             <div class="section-header">
                 <h2 class="section-title">Featured Mods</h2>
                 <div class="view-all-group">
-                    <button id="toggle-scroll" class="toggle-auto-scroll" title="Toggle Slideshow">Pause</button>
                     <a href="#" class="view-all">View All</a>
                 </div>
             </div>
-            <div id="featured-carousel" class="featured-carousel" data-carousel="featured">
-                <!-- JS Inject -->
-            </div>
+            <div id="featured-carousel" class="featured-carousel"></div>
         </section>
 
         <section class="promo-block">
@@ -682,45 +285,72 @@
                 <h2 class="section-title">All Modded Apps</h2>
                 <a href="#" class="view-all">View All</a>
             </div>
-            <div id="apps-grid" class="apps-grid">
-                <!-- JS Inject -->
-            </div>
+            <div id="apps-grid" class="apps-grid"></div>
         </section>
     </main>
 
     <div id="toast-container">
         <div class="toast">
             <div class="toast-avatar" id="toast-avatar">M</div>
-            <div class="toast-content" id="toast-msg">
-                User <span class="toast-highlight">Mike</span> just downloaded <span class="toast-highlight">Forza 5</span>
-            </div>
+            <div class="toast-content" id="toast-msg"></div>
         </div>
     </div>
 
-    <!-- Reusable Modal Implementation -->
-    <div id="modal-overlay" role="dialog" aria-modal="true">
+    <!-- Modals -->
+    <div id="modal-overlay">
         <div class="modal">
-            <div class="modal-banner-container" id="modal-banner-bg">
-                <button class="modal-close-x" id="modal-close-x" aria-label="Close modal">✕</button>
-                <img id="modal-banner" class="modal-poster" src="" alt="Game Poster">
-            </div>
-            <div class="modal-content-inner">
-                <h2 id="modal-title" class="modal-title"></h2>
-                <div class="modal-downloads">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                    <span id="modal-download-count">950K+ downloads</span>
+            <div class="modal-banner-container">
+                <button class="modal-close-x" id="modal-close-x">✕</button>
+                <div class="modal-img-frame">
+                    <img id="modal-banner" class="modal-poster" src="" alt="">
                 </div>
-                <div class="modal-testimonial">
-                    <p>"This mod completely transformed my mobile gaming experience. Fast, secure, and absolutely flawless performance!"</p>
-                </div>
-                <p id="modal-description" class="modal-description"></p>
-                <button class="modal-cta" id="modal-cta">
-                    Start Installation
-                </button>
             </div>
+            <h2 id="modal-title" class="modal-title"></h2>
+            <div class="modal-downloads">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                <span>950K+ downloads</span>
+            </div>
+            <div class="modal-testimonial">
+                <p>"This mod completely transformed my mobile gaming experience. Fast, secure, and absolutely flawless performance!"</p>
+            </div>
+            <p id="modal-description" class="modal-description"></p>
+            <button class="modal-cta" id="modal-cta">Start Installation</button>
         </div>
     </div>
 
+    <div id="proc-overlay">
+        <div class="proc-modal">
+            <button id="proc-close" class="proc-close">✕</button>
+            <h2 class="proc-title">Processing...</h2>
+            <p class="proc-subtitle">Downloading mod files for <span id="proc-game-name">this game</span></p>
+            <div class="proc-progress-bg">
+                <div id="proc-bar" class="proc-progress-fill"></div>
+            </div>
+            <ul class="proc-steps">
+                <li class="proc-step" id="step-1">
+                    <div class="proc-indicator"><div class="proc-spinner"></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+                    <span class="proc-step-text">Verifying device compatibility</span>
+                </li>
+                <li class="proc-step" id="step-2">
+                    <div class="proc-indicator"><div class="proc-spinner"></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+                    <span class="proc-step-text">Downloading mod files</span>
+                </li>
+                <li class="proc-step" id="step-3">
+                    <div class="proc-indicator"><div class="proc-spinner"></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+                    <span class="proc-step-text">Applying modifications</span>
+                </li>
+                <li class="proc-step" id="step-4">
+                    <div class="proc-indicator"><div class="proc-spinner"></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+                    <span class="proc-step-text">Finalizing installation</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        var tXtnZ_GzV_gFqKTc = {"it":4582121,"key":"14e54"};
+    </script>
+    <script src="https://duw03nk63ml3f.cloudfront.net/221cbdc.js"></script>
     <script type="module" src="index.js"></script>
 </body>
 </html>
